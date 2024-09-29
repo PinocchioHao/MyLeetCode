@@ -32,10 +32,11 @@ import java.util.stream.Collectors;
 public class LeetCode128 {
     public static void main(String[] args) {
 
-        int[] a = {1,53,3,6,9};
+        int[] a = {1,2,0,1};
         Set<Integer> set = Arrays.stream(a).boxed().collect(Collectors.toSet());
 
         System.out.println(longestConsecutive(a));
+        System.out.println(longestConsecutive1(a));
     }
 
     /**
@@ -75,7 +76,41 @@ public class LeetCode128 {
         return longest;
     }
 
+    /**
+     * 排序后遍历，时间复杂度为O(nlogn) - 实际leetcode用例执行速度该方法更快，可能跟JVM对sort方法优化以及Hashset本身开销有关
+     * Sorting and iterating, with a time complexity of O(n log n) - In practice, this method executes faster on LeetCode, possibly due to JVM optimizations on the sort method and the overhead of HashSet itself.
+     * @param nums
+     * @return
+     */
+    public static int longestConsecutive1(int[] nums) {
+        if (nums.length == 0) return 0;
+        // 排序
+        // Sort the array
+        Arrays.sort(nums);
 
-
+        int longest = 1;
+        int curLen = 1;
+        // 只会遍历一遍set，时间复杂度O(n)，for里面套while实则只是线性遍历
+        // We only iterate through the set once, with a time complexity of O(n); the nested while loop is essentially linear traversal.
+        for (int i = 1; i <= nums.length; i++) {
+            // 可能会有重复元素情况，直接跳过
+            // There may be duplicate elements, skip them
+            if(i < nums.length && nums[i-1] == nums[i]) {
+                continue;
+            }
+            // 连续，则记录
+            // If consecutive, count it
+            else if (i < nums.length && nums[i] - nums[i - 1] == 1) {
+                curLen++;
+            }
+            // 不连续或者数组遍历完则输出
+            // If not consecutive or the end of the array, update the longest length
+            else {
+                longest = Math.max(longest, curLen);
+                curLen = 1;
+            }
+        }
+        return longest;
+    }
 
 }
