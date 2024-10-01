@@ -1,4 +1,4 @@
-package iteration.interval;
+package interval;
 
 import java.util.Arrays;
 
