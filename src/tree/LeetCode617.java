@@ -1,4 +1,4 @@
-package recursion;
+package tree;
 
 /**
  617. Merge Two Binary Trees

@@ -1,4 +1,4 @@
-package recursion;
+package tree;
 
 /**
  * 543. Diameter of Binary Tree

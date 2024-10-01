@@ -1,4 +1,4 @@
-package recursion;
+package tree;
 
 class Node {
     public int val;

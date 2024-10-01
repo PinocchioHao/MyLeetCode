@@ -1,4 +1,4 @@
-package recursion;
+package tree;
 
 public class TreeNodeTest {
     public static void main(String[] args) {
