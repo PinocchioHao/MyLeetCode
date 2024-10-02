@@ -1,5 +1,7 @@
 package linkedlist;
 
+import org.w3c.dom.Node;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -78,7 +80,7 @@ public class LeetCode160 {
         ListNode l2 = l1.next;
 //        l2.next = l1.next;
 
-        ListNode res = getIntersectionNode1(l1,l2);
+        ListNode res = getIntersectionNode2(l1, l2);
 
         System.out.println();
 
@@ -89,6 +91,7 @@ public class LeetCode160 {
     /**
      * 哈希表 - 遍历ListA保存所有节点，随后遍历ListB，如果找到相等则立马输出该点即为交点
      * Hash Table - Traverse ListA and store all its nodes, then traverse ListB. If a matching node is found, return it as the intersection point.
+     *
      * @param headA
      * @param headB
      * @return
@@ -125,6 +128,7 @@ public class LeetCode160 {
      * 双指针法 - p1,p2先分别遍历headA,headB，当遍历到结尾后，又去遍历另一方，那么下一次二者就会在交点相交
      * Two-pointer method - p1 and p2 initially traverse ListA and ListB separately. Once they reach the end, they switch to the other list.
      * Eventually, they will meet at the intersection point if there is one.
+     *
      * @param headA
      * @param headB
      * @return
@@ -154,6 +158,41 @@ public class LeetCode160 {
         return p1;
     }
 
+    /**
+     * 暴力法，遍历A和B所有节点，找到第一个相等节点
+     * Brute-force approach: Traverse all nodes in ListA and ListB to find the first equal node
+     * @param headA
+     * @param headB
+     * @return
+     */
+    public static ListNode getIntersectionNode2(ListNode headA, ListNode headB) {
+        // 如果有任意一个链表为空，直接返回null
+        // If either ListA or ListB is null, return null immediately
+        if (headA == null || headB == null) return null;
+
+        // 遍历链表A
+        // Traverse ListA
+        while (headA != null) {
+            // 需要额外创建一个节点指向链表B的头节点，如果用headB的话遍历一次就到链表末尾了
+            // An additional node needs to be created to point to the head node of linked list B.
+            // If headB is used, traversing once will reach the end of the linked list
+            ListNode b = headB;
+            // 遍历链表B
+            // Traverse ListB
+            while (b != null) {
+                // 如果找到相同的节点，返回该节点
+                // If a matching node is found, return that node
+                if (headA == b) {
+                    return headA;
+                }
+                b = b.next; // 移动到链表B的下一个节点
+            }
+            headA = headA.next; // 移动到链表A的下一个节点
+        }
+        // 如果没有找到相交节点，返回null
+        // Return null if no intersection node is found
+        return null;
+    }
 
 
 }
