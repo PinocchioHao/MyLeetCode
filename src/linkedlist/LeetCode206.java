@@ -45,7 +45,7 @@ public class LeetCode206 {
     }
 
     /**
-     * 栈 - 本题用栈会带来额外开销，但也是一种思路
+     * 栈 - 本题用栈会带来额外开销，但也是一种思路（发现Stack<Integer>存值后new链表比直接用stack存ListNode的开销小）
      * Stack - This approach uses a stack, which incurs extra overhead, but it is still a valid method.
      * @param head 链表的头节点 - Head of the linked list
      * @return 反转后的链表头节点 - Head of the reversed linked list
@@ -57,12 +57,12 @@ public class LeetCode206 {
 
         // 使用栈存储链表的值
         // Use a stack to store the values of the list
-        Stack<Integer> stack = new Stack<>();
+        Stack<ListNode> stack = new Stack<>();
 
         // 将链表节点的值压入栈中
         // Push all node values onto the stack
         while (head != null) {
-            stack.push(head.val); // 将当前节点的值压入栈
+            stack.push(head); // 将当前节点的值压入栈
             head = head.next; // 移动到下一个节点
         }
 
@@ -70,13 +70,13 @@ public class LeetCode206 {
         // Pop from the stack and create the reversed list
         // 注意这里要新建游标节点cur来操作，如果全用newHead进行操作的话，会损失节点，最后返回的是最后处理的节点
         // Create a new head with the top value of the stack
-        ListNode newHead = new ListNode(stack.pop()); // 创建新链表的头节点
+        ListNode newHead = stack.pop(); // 创建新链表的头节点
         ListNode cur = newHead; // 使用cur指针操作新链表
 
         // 继续弹出剩余的值并创建新节点
         // Continue popping values and creating new nodes
         while (!stack.empty()) {
-            cur.next = new ListNode(stack.pop()); // 创建新节点并连接
+            cur.next = stack.pop(); // 创建新节点并连接
             cur = cur.next; // 移动游标到新创建的节点
         }
 
