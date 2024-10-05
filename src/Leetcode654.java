@@ -2,7 +2,6 @@ public class Leetcode654 {
 	static int max = 0;
 	static int maxIdx = 0;
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 
 
 		int[] nums = {2,0,4,6,3};

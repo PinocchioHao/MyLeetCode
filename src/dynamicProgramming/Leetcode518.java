@@ -38,7 +38,6 @@ package dynamicProgramming;
 public class Leetcode518 {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 
 		
 		int[] coins = {2,5};
