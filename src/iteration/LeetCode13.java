@@ -58,7 +58,7 @@ public class LeetCode13 {
 //		System.out.println(a.substring(1, 3));
 //		System.out.println(a.substring(2));
 
-        System.out.println(romanToInt("IV"));
+        System.out.println(romanToInt3("IV"));
     }
 
     /**
@@ -185,6 +185,42 @@ public class LeetCode13 {
 
     }
 
+    /**
+     * while循环直接遍历累加 - 注意步进不规律择选while循环
+     * @param s
+     * @return
+     */
+    public static int romanToInt3(String s) {
+        int rlt = 0;
+        int i = 0;
+        while (i < s.length()) {
+            // 先判断前两位，如果前两位是以下特殊情况则累加后跳过后面所有步骤，防止这一轮再加一次，以及防止之后逻辑数组越界
+            if(i<s.length() - 1){
+                String sub = s.substring(i, i + 2);
+                switch (sub) {
+                    case "IV": rlt+=4; i+=2; continue;
+                    case "IX": rlt+=9; i+=2; continue;
+                    case "XL": rlt+=40; i+=2; continue;
+                    case "XC": rlt+=90; i+=2; continue;
+                    case "CD": rlt+=400; i+=2; continue;
+                    case "CM": rlt+=900; i+=2; continue;
+                }
+            }
+            // 不是连着两位的特殊情况，则可以直接累加
+            char c = s.charAt(i);
+            switch (c) {
+                case 'I': rlt+=1; i++; break;
+                case 'V': rlt+=5; i++; break;
+                case 'X': rlt+=10; i++; break;
+                case 'L': rlt+=50; i++; break;
+                case 'C': rlt+=100; i++; break;
+                case 'D': rlt+=500; i++; break;
+                case 'M': rlt+=1000; i++; break;
+            }
+        }
+        return rlt;
+    }
+    
 
 }
 
