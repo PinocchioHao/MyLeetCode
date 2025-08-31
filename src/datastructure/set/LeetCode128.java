@@ -32,7 +32,7 @@ import java.util.stream.Collectors;
 public class LeetCode128 {
     public static void main(String[] args) {
 
-        int[] a = {1,2,0,1};
+        int[] a = {1, 2, 0, 1,3,0,5,2,4};
         Set<Integer> set = Arrays.stream(a).boxed().collect(Collectors.toSet());
 
         System.out.println(longestConsecutive(a));
@@ -44,6 +44,7 @@ public class LeetCode128 {
      * 遍历集合要注意是否当前元素是某一连续队列起始，是就继续找它的后续节点，不是则直接进入下一次循环
      * Convert the array to a set, then iterate through the set (cost O(n)), checking for consecutive numbers from the set (cost O(1)).
      * When traversing the set, check if the current element is the start of a consecutive sequence; if so, continue to find its subsequent elements, otherwise move to the next iteration.
+     *
      * @param nums
      * @return
      */
@@ -56,7 +57,7 @@ public class LeetCode128 {
         int longest = 0;
         // 只会遍历一遍set，时间复杂度O(n)，for里面套while实则只是线性遍历
         // We only iterate through the set once, with a time complexity of O(n); the nested while loop is essentially linear traversal.
-        for(Integer num : set) {
+        for (Integer num : set) {
             // set不包含num-1的元素，说明num可以作为新的起点；如果不加这个条件，则时间复杂度为O(n平方)
             // If the set does not contain num - 1, it indicates that num can be a new starting point; without this condition, the time complexity would be O(n^2).
             if (!set.contains(num - 1)) {
@@ -79,6 +80,7 @@ public class LeetCode128 {
     /**
      * 排序后遍历，时间复杂度为O(nlogn) - 实际leetcode用例执行速度该方法更快，可能跟JVM对sort方法优化以及Hashset本身开销有关
      * Sorting and iterating, with a time complexity of O(n log n) - In practice, this method executes faster on LeetCode, possibly due to JVM optimizations on the sort method and the overhead of HashSet itself.
+     *
      * @param nums
      * @return
      */
@@ -92,23 +94,24 @@ public class LeetCode128 {
         int curLen = 1;
         // 只会遍历一遍set，时间复杂度O(n)，for里面套while实则只是线性遍历
         // We only iterate through the set once, with a time complexity of O(n); the nested while loop is essentially linear traversal.
-        for (int i = 1; i <= nums.length; i++) {
+        for (int i = 1; i < nums.length; i++) {
             // 可能会有重复元素情况，直接跳过
             // There may be duplicate elements, skip them
-            if(i < nums.length && nums[i-1] == nums[i]) {
+            if (nums[i - 1] == nums[i]) {
                 continue;
             }
             // 连续，则记录
             // If consecutive, count it
-            else if (i < nums.length && nums[i] - nums[i - 1] == 1) {
+            else if (nums[i] - nums[i - 1] == 1) {
                 curLen++;
             }
-            // 不连续或者数组遍历完则输出
-            // If not consecutive or the end of the array, update the longest length
+            // 不连续
+            // If not consecutive
             else {
-                longest = Math.max(longest, curLen);
                 curLen = 1;
             }
+            // update the longest length
+            longest = Math.max(longest, curLen);
         }
         return longest;
     }

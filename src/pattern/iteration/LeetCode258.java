@@ -50,7 +50,7 @@ public class LeetCode258 {
             int sum = 0;
             for (int i = 0; i < numStr.length(); i++) {
                 // Can also use   int digitNum = Character.getNumericValue(numStr.charAt(i));
-                int digitNum = numStr.charAt(i) - '0';
+                int digitNum = numStr.charAt(i) - '0'; // 这里如果用Integer.valueOf(str.charAt(i)+"")开销会很大
                 sum += digitNum;
             }
             numStr = String.valueOf(sum);
@@ -59,14 +59,14 @@ public class LeetCode258 {
     }
 
     /**
-     * 每执行一次里层while，就将当前数的所有位加起来，并且更新当前数为各位相加后的数
-     * 然后再到外层判断，如果当前数仍为两位数以上，则继续进入内层的各位相加循环
+     * 每执行一次里层while，就将当前数的所有位加起来，并且更新当前数为各位相加后的数 -- 里层执行相加传入的位数
+     * 然后再到外层判断，如果当前数仍为两位数以上，则继续进入内层的各位相加循环  -- 外层则相加新数的位数，注意里层结果计算完就要将计算结果传入外层
      * @param num
      * @return
      */
     public static int addDigits1(int num) {
         // Continue the process until the number is a single digit
-        while (num / 10 != 0) {
+        while (num >= 10) {
             int sum = 0;
             // Add all digits of the current number
             while (num != 0) {
@@ -95,7 +95,6 @@ public class LeetCode258 {
             return addDigits2(num%10 + addDigits2(num/10));
         }
     }
-
 
 
 
