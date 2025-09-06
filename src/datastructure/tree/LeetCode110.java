@@ -45,21 +45,7 @@ public class LeetCode110 {
      * @return True if the tree is balanced, false otherwise.
      */
     public static boolean isBalanced(TreeNode root) {
-        // If the tree is empty, it's considered balanced.
-        if (root == null) return true;
-
-        // Get the heights of the left and right subtrees.
-        int leftHeight = getHeightAndCheckIsBalanced(root.left);
-        int rightHeight = getHeightAndCheckIsBalanced(root.right);
-
-        // If either subtree is unbalanced (height = -1), the whole tree is unbalanced.
-        if (leftHeight == -1 || rightHeight == -1) return false;
-
-        // If the height difference between left and right subtrees is more than 1, the tree is unbalanced.
-        if (Math.abs(leftHeight - rightHeight) > 1) return false;
-
-        // If none of the above conditions were met, the tree is balanced.
-        return true;
+        return getHeightAndCheckIsBalanced(root) != -1;
     }
 
     /**
