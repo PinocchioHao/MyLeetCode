@@ -63,8 +63,8 @@ public class LeetCode438 {
 
 	        Map<Character, Integer> needs = new HashMap<>();
 	        Map<Character, Integer> window = new HashMap<>();
-	        
-	        char[] pchars = p.toCharArray();
+
+		 char[] pchars = p.toCharArray();
 
 	        //记录p中各个字符出现频率
 	        for(char c : pchars ){

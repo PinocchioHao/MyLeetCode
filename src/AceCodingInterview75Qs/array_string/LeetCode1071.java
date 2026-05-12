@@ -87,6 +87,7 @@ public class LeetCode1071 {
         int len1 = str1.length();
         int len2 = str2.length();
         for (int i = Math.min(len1, len2); i > 0; i--) {
+            // 优化长度不符的情况
             if (len1 % i == 0 && len2 % i == 0) {
                 String rlt = str1.substring(0, i);
                 if (judgeDivisor(str1, rlt) && judgeDivisor(str2, rlt)) {
