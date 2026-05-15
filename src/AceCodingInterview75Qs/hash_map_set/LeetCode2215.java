@@ -42,10 +42,7 @@ Constraints:
  *
  */
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class LeetCode2215 {
@@ -61,12 +58,15 @@ public class LeetCode2215 {
     public static List<List<Integer>> findDifference(int[] nums1, int[] nums2) {
         Set<Integer> set1 = new HashSet<>();
         Set<Integer> set2 = new HashSet<>();
-        for (int num : nums1) {
-            set1.add(num);
-        }
-        for (int num : nums2) {
-            set2.add(num);
-        }
+        set1 = Arrays.stream(nums1).boxed().collect(Collectors.toSet());
+        set2 = Arrays.stream(nums2).boxed().collect(Collectors.toSet());
+
+//        for (int num : nums1) {
+//            set1.add(num);
+//        }
+//        for (int num : nums2) {
+//            set2.add(num);
+//        }
         // Java 8 的流式写法，效率较低，实际面试中不建议使用
 //        List<Integer> res1 = set1.stream().filter(num -> !set2.contains(num)).collect(Collectors.toList());
 //        List<Integer> res2 = set2.stream().filter(num -> !set1.contains(num)).collect(Collectors.toList());
