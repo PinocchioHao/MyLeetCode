@@ -1,4 +1,4 @@
-package AceCodingInterview75Qs.graphs;
+package AceCodingInterview75Qs.graphs_dfs;
 
 /*
  *
@@ -46,9 +46,6 @@ All the values of rooms[i] are unique.
  *
  *
  */
-
-import datastructure.tree.TreeNode;
-import datastructure.tree.TreeNodeUtils;
 
 import java.util.ArrayDeque;
 import java.util.Deque;

@@ -1,4 +1,4 @@
-package AceCodingInterview75Qs.graphs;
+package AceCodingInterview75Qs.graphs_dfs;
 
 /*
  *

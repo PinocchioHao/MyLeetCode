@@ -1,4 +1,4 @@
-package AceCodingInterview75Qs.graphs;
+package AceCodingInterview75Qs.graphs_dfs;
 
 /*
  *
@@ -90,6 +90,16 @@ public class LeetCode399 {
 //            // 直接把它 get 出来，然后把邻居 v 和权重放进去
 //            graph.get(u).put(v, val);
 
+            // 或者以下
+//            String start = equations.get(i).get(0);
+//            String end = equations.get(i).get(1);
+//            Map<String, Double> val1 = graph.getOrDefault(start, new HashMap());
+//            val1.put(end, values[i]);
+//            graph.put(start, val1);
+//            Map<String, Double> val2 = graph.getOrDefault(end, new HashMap());
+//            val2.put(start, 1/values[i]);
+//            graph.put(end, val2);
+
         }
 
         // 2. 准备结果数组
@@ -152,6 +162,7 @@ public class LeetCode399 {
 
                 // 关键传递：如果子搜索返回的不是 -1.0，说明它在更深的地方摸到了终点
                 // 因为结果在终点处已经完全算好了，所以这里不需要做任何加工，直接原样往上传
+                // TODO 如果不加这层判断，直接 return dfs(...)，会怎么样？会不会有问题？（会的！）为什么？（因为如果子搜索没找到终点，它会返回 -1.0，这个 -1.0 也会被原样往上传，导致父搜索以为自己找到了终点了，结果就错了！）
                 if (result != -1.0) {
                     return result;
                 }
