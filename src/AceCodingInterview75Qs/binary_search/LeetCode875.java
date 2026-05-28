@@ -44,12 +44,12 @@ public class LeetCode875 {
 
     public static void main(String[] args) {
 
-        int[] arr1 = {1, 2, 3, 4, 5, 6, 7};
+        int[] arr1 = {3, 6, 7, 11};
         int[] arr2 = {1, 2, 3, 4, 5, 6, 7};
 
         LeetCode875 example = new LeetCode875();
 
-        int rlt = example.findPeakElement(arr1);
+        int rlt = example.minEatingSpeed(arr1, 8);
         System.out.println(rlt);
     }
 
@@ -84,7 +84,7 @@ public class LeetCode875 {
         boolean canFinish = false;
         // 一定注意用long，防止累加过程中整形溢出
         long finishHours = 0;
-        System.out.println("speed: " + speed);
+//        System.out.println("speed: " + speed);
         for (int pile : piles){
             // int除法整除后不需要向上取整的特殊操作
             int time = (pile - 1) / speed + 1;
