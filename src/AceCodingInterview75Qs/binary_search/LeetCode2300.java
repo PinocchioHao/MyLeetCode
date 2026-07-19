@@ -100,6 +100,7 @@ public class LeetCode2300 {
 
 
     // 思路：排序后找到第一个乘积大于等于successful的位置，记录长度
+    // 参考successfulPairs1这个方法标准化模板
     public int[] successfulPairs(int[] spells, int[] potions, long success) {
         int[] res = new int[spells.length];
         Arrays.sort(potions);
@@ -123,5 +124,40 @@ public class LeetCode2300 {
         }
         return res;
     }
+
+
+
+    // 用自己顺手的常用的找第一个大于等于的位置（左边界）的模板
+    public int[] successfulPairs1(int[] spells, int[] potions, long success) {
+
+        int[] rlt = new int[spells.length];
+        // 二分查找必须先排序
+        Arrays.sort(potions);
+
+        for(int i = 0; i < spells.length; i++){
+            // 左右边界
+            int left = 0;
+            int right = potions.length - 1;
+            // 第一个生效的咒语的下标位置，初始化为数组长表示不存在，并且方便后续操作
+            int minGreaterIdx = potions.length;
+            while(left <= right){
+                int mid = left + (right - left) / 2;
+                // 算咒语
+                long mul = (long)spells[i] * potions[mid];
+                if (mul >= success){
+                    // 不断收缩并找第一个大于等于success的位置
+                    minGreaterIdx = mid;
+                    right = mid - 1;
+                } else{
+                    left = mid + 1;
+                }
+            }
+            // 符合的个数为数组长-第一个找到符合咒语的位置下标
+            rlt[i] = potions.length - minGreaterIdx;
+        }
+        return rlt;
+    }
+
+
 
 }

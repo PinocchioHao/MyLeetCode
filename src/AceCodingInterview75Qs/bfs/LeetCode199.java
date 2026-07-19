@@ -74,6 +74,7 @@ public class LeetCode199 {
     // BFS。记录每层个数，遍历到最右边元素则记录结果。
     public List<Integer> rightSideView(TreeNode root) {
         List<Integer> res = new ArrayList<>();
+        if(root == null) return res;
         Deque<TreeNode> deque = new ArrayDeque();
         // 根节点先入队方便操作
         deque.addLast(root);

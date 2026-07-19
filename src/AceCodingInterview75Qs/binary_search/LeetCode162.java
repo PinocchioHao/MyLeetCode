@@ -79,9 +79,8 @@ public class LeetCode162 {
 
         while (left <= right) {
             int mid = left + (right - left) / 2;
-
             // 【核心逻辑】：只要是上坡，mid 必不是峰顶，直接往右走
-            // 注意加一个 mid < nums.length - 1 防越界
+            // mid < nums.length - 1 防越界，以及确保不是最后一个元素的情况下往右
             if (mid < nums.length - 1 && nums[mid] < nums[mid + 1]) {
                 left = mid + 1;
             } else {
@@ -89,6 +88,19 @@ public class LeetCode162 {
                 res = mid;         // 记下候选人
                 right = mid - 1;   // 往左逼近
             }
+
+            // 或者以下逻辑：
+            //【正向思维】：什么情况下 mid 有可能是峰顶？
+            // 1. 走到了最右边的悬崖 (mid == nums.length - 1)
+            // 2. 明确的下坡 (nums[mid] > nums[mid + 1])
+            // 注意：必须把 mid == nums.length - 1 写在前面，利用 || 的短路特性防止越界！
+//            if (mid == nums.length - 1 || nums[mid] > nums[mid + 1]) {
+//                res = mid;         // 当前位置符合“下坡/悬崖”，记下这个可能的峰顶！
+//                right = mid - 1;   // 往左边逼近，看有没有更靠左的峰
+//            } else {
+//                // 否则（明确的上坡，且没到悬崖）
+//                left = mid + 1;    // 放心往右爬
+//            }
         }
 
         return res;

@@ -53,6 +53,7 @@ public class LeetCode198 {
             return nums[0];
         }
         // dp[i]表示打劫到这一家的时候能获取的钱财最大值
+        // 或者可以用dp[i]表示打劫完这一家能获得的最大钱财数，长度为nums.length+1，初始化dp[0]=0, dp[1]=nums[0], dp[i] = Math.max(nums[i - 1] + dp[i-2], dp[i-1]); 就能包含所有情况
         int[] dp = new int[nums.length];
         dp[0] = nums[0];
         // 注意dp[1]选二者之间最有钱的打劫，如果dp[1]搞错了会导致后续状态转移方程都错

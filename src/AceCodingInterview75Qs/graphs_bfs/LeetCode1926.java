@@ -159,7 +159,7 @@ public class LeetCode1926 {
                 int currRow = curr[0];
                 int currCol = curr[1];
 
-                // 【核心业务判断】：如果当前点是边界，且它不是起点（也就是步数 > 0）
+                // 【核心业务判断】：如果当前点是边界，且它不是起点（也就是步数 > 0） -- 因为入口不能算作出口，须排除entrance直接在最外层被认作出口的情况
                 // 那么它就是离起点最近的出口，直接返回当前步数！
                 if (steps > 0 && (currRow == 0 || currRow == m - 1 || currCol == 0 || currCol == n - 1)) {
                     return steps;

@@ -87,6 +87,23 @@ public class LeetCode1137 {
 
         // 5. 返回目标值
         return prev[n];
+
+
+
+        // 压缩成一维
+//        int x = 0;
+//        int y = 1;
+//        int z = 1;
+//        int ans = 0;
+//        for(int i = 3; i <= n; i++){
+//            ans = x + y + z;
+//            x = y;
+//            y = z;
+//            z = ans;
+//        }
+//
+//        return ans;
+
     }
 
 }

@@ -80,7 +80,8 @@ public class LeetCode2462 {
         // 总共招募k人
         while (k > 0){
             // 维持左右两边的堆里都有 candidates 个人（除非没人了）
-            // 注意条件 i <= j，防止左右指针相撞/交叉，同一个人不能进两次堆
+            // 注意这里判断用size<candidate，因为在while里面还要offer一次，增添一个元素，这样保证heap里面有candidate个人
+            // 注意条件 i <= j，防止左右指针相撞/交叉，同一个人不能进两次堆。注意如果i<j会漏数
             while (leftHeap.size() < candidates && left <= right){
                 leftHeap.offer(costs[left]);
                 left++;

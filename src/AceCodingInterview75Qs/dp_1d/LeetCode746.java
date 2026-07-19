@@ -85,6 +85,22 @@ public class LeetCode746 {
 
         // dp 数组的最后一个元素就是登顶的最小总代价
         return dp[dp.length - 1];
+
+        // 空间压缩版
+//        // x 代表 dp[i-2]（跳到前两阶的最小总花费），初始化也就是 dp[0] = 0
+//        int x = 0;
+//        // y 代表 dp[i-1]（跳到前一阶的最小总花费），初始化也就是 dp[1] = 0
+//        int y = 0;
+//        int ans = 0;
+//        for (int i = 2; i <= cost.length; i++) {
+//            // 1. 根据前两个状态，算出到达当前台阶 i 的最小花费
+//            ans = Math.min(x + cost[i - 2], y + cost[i - 1]);
+//            // 2. 核心：窗口整体向右滑动一格，准备迎接下一轮循环
+//            x = y;      // 昨天的 dp[i-1] 变成了明天的 dp[i-2]
+//            y = ans;    // 今天刚算出的 dp[i] 变成了明天的 dp[i-1]
+//        }
+//        return ans;
+
     }
 
 }
